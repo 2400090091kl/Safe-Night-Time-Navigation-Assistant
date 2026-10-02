@@ -1,64 +1,38 @@
-# Safe Night-Time Navigation Assistant
+## 🧪 Testing
 
-## 📌 Project Overview
+The prototype was tested using multiple driver-monitoring scenarios.
 
-The Safe Night-Time Navigation Assistant is a driver-monitoring prototype designed to detect signs of driver drowsiness using a camera.
+| Test | Scenario | Expected Result |
+|---|---|---|
+| T01 | Eyes open | AWAKE |
+| T02 | Short eye closure | BLINK / CHECKING → AWAKE |
+| T03 | Eyes closed for several seconds | DROWSINESS ALERT + Alarm |
+| T04 | Face moved away from camera | NO FACE DETECTED |
+| T05 | Multiple drowsiness events | Events recorded in log |
+| T06 | Press Q | Application exits safely |
 
-The system uses computer vision to detect the driver's face and eyes. If the driver's eyes remain undetected for a predefined period, the system identifies a possible drowsiness event and provides an audible warning.
+## 📸 Testing Evidence
 
-## 🎯 Objective
+### 1. Normal Driver Monitoring
 
-The main objective of this project is to develop a computer-vision-based safety assistant that can:
+The system detects the driver's face and eyes and reports the driver as awake.
 
-- Monitor the driver's face
-- Detect the driver's eyes
-- Identify prolonged eye closure
-- Detect possible drowsiness
-- Generate an audible warning
-- Display the driver's current monitoring status
-- Record drowsiness events in a log file
+![Awake Detection](screenshots/awake.png)
 
-## 🛠️ Technologies Used
+### 2. Blink Detection
 
-- Python
-- OpenCV
-- NumPy
-- Computer Vision
-- Haar Cascade Classifiers
-- Windows `winsound`
-- VS Code
+A short eye closure is temporarily classified as a blink/checking state rather than immediately triggering a drowsiness alert.
 
-## ⚙️ System Features
+![Blink Detection](screenshots/blink-checking.png)
 
-### 1. Face Detection
+### 3. Drowsiness Alert
 
-The system uses OpenCV's Haar Cascade classifier to detect the driver's face.
+When eye closure exceeds the configured threshold, the system displays a drowsiness warning and activates the audible alert.
 
-### 2. Eye Detection
+![Drowsiness Alert](screenshots/drowsiness-alert.png)
 
-The detected face region is analyzed to identify the driver's eyes.
+### 4. Event Logging
 
-### 3. Drowsiness Detection
+Drowsiness events are recorded with timestamps in the monitoring log.
 
-If the driver's eyes remain undetected continuously for the configured duration, the system identifies a possible drowsiness event.
-
-### 4. Audible Alert
-
-A Windows system beep is generated when drowsiness is detected.
-
-### 5. Driver Status UI
-
-The application displays statuses such as:
-
-- AWAKE
-- BLINK / CHECKING
-- EYES CLOSED
-- DROWSINESS ALERT!
-- NO FACE DETECTED
-
-### 6. Event Logging
-
-Detected drowsiness events are recorded with timestamps in:
-
-```text
-drowsiness_log.txt
+![Event Log](screenshots/log.png)
