@@ -1,0 +1,18 @@
+# Virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# IDE files
+.vscode/
+.idea/
+
+# Generated logs
+drowsiness_log.txt
+
+# Python build files
+build/
+dist/
+*.egg-info/
